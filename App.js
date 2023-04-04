@@ -111,7 +111,7 @@ const Item = item => {
         <View style={styles.decrement}>
           <Button
             onPress={() => decrementcounts(name, price)}
-            title="-"
+            title="--"
             color="#C62525"
           />
         </View>
