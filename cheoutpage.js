@@ -32,7 +32,7 @@ const Checkoutpage = (props) => {
     console.log();
   }
   const [proceedbutton, setproceedbutton] = useState(0);
-  const proceed = () => {
+  const proced = () => {
     console.log();
   }
   console.log('selectedFood', selectedFood);
@@ -40,26 +40,32 @@ const Checkoutpage = (props) => {
     <View>
       
       <View>
-        <View style={styles.inline}>
-          <Text > Death By Chocolate </Text>
-          <View style={styles.countpage}>
-            <View>
-              <Button
-                onPress={decrement}
-                title='-'
-                color={'#C62525'}
-              />
+        {selectedFood.map((item) => {
+          return (
+            <View style={styles.inline}>
+              <Text>{item.name}</Text>
+              <View style={styles.countpage}>
+                <View>
+                  <Button
+                    onPress={decrement}
+                    title='-'
+                    color={'#C62525'}
+                  />
+                </View>
+                <Text>{item.qantity}</Text>
+                <View>
+                  <Button
+                    onPress={increment}
+                    title='+'
+                    color={'#4619DA'}
+                  />
+                </View>
+              </View>
             </View>
-            <Text>{count}</Text>
-            <View>
-              <Button
-                onPress={increment}
-                title='+'
-                color={'#4619DA'}
-              />
-            </View >
-          </View>
-        </View>
+          )
+        })
+
+        }
         <View>
           <TextInput
             onChangeText={handleChange}
@@ -68,10 +74,10 @@ const Checkoutpage = (props) => {
         </View>
       </View>
       <View>
-        <Text>Offers And Benefits</Text>
+        <Text style={{fontSize:25}}>Offers And Benefits</Text>
       </View>
       <View style={styles.Apply}>
-        <Text>WELCOM50</Text>
+        <Text style={{fontSize:20,fontWeight:20}}>WELCOM50</Text>
         <View>
           <Button
             onPress={Apply}
@@ -80,7 +86,7 @@ const Checkoutpage = (props) => {
           />
         </View>
       </View>
-      <View>
+      <View style={styles.viewmore}>
         <Button
           onPress={Viewmore}
           title='View More Coupons'
@@ -88,14 +94,15 @@ const Checkoutpage = (props) => {
         />
       </View>
       <View>
-        <Text>Bill Details</Text>
+        <Text style={{fontSize:30,fontWeight:'bold',padding:10}}>Bill Details</Text>
+        <View style={styles.billdetails}>
         <View style={styles.free}>
           <View>
             <Text>Item Total </Text>
             <Text>Delivery Free|1 kms </Text>
             <Text>Free Delivery on your order </Text>          
           </View>
-          <View>
+          <View style={styles.freebutton}>
             <Button
               onPress={Free}
               title='Free'
@@ -119,23 +126,28 @@ const Checkoutpage = (props) => {
         </View>
       </View>
       <View>
-        <Text>Almost There </Text>
-        <Text>Login/createAccount quickly to place order</Text>
-        <View>
+        <Text style={{fontSize:20,fontWeight:25,padding:10}}>Almost There </Text>
+        <Text style={{fontSize:20,fontWeight:5,paddingTop:5}}>Login/createAccount quickly to place order</Text>
+        <View style={styles.proced}>
           <Button
-            onPress={proceed}
+            onPress={proced}
             title='Proceed with Phone Number'
             color="#F7250E"
           />
         </View>
+        </View>
       </View>
     </View>
+    
   );
 };
 const styles = StyleSheet.create({
   countpage: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop:60,
+    padding:40
+    
   },
   incrementbutton: {
     flexDirection: 'row',
@@ -152,7 +164,12 @@ const styles = StyleSheet.create({
   },
   Apply:{
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    padding: 8,
+    margin: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    paddingTop:10
 
   },  
   free:{
@@ -166,6 +183,26 @@ const styles = StyleSheet.create({
   totalpayment:{
     flexDirection: 'row',
     justifyContent: 'space-between'
-  }
+  },
+  billdetails:{
+    padding: 8,
+    margin: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    paddingTop:10
+
+  },
+  freebutton:{
+    
+  },
+  proced:{
+    paddingTop:10
+
+  },
+  viewmore:{
+    paddingTop:10
+
+  } 
+  
 });
 export default Checkoutpage;
